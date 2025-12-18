@@ -2,26 +2,30 @@ TRIES = 5
 COUNT = 0
 
 from random_word import random_word
+from random_word import words
 
-key = random_word.upper() #random 5 letter word
-
-#guess = "JELLO" #input by user
+key = random_word #random 5 letter word lower-case
 
 while COUNT < TRIES:
-    guess = input("Enter a 5 letter guess: ").upper()
-    if guess == key:
-        print("You got it!")
-        break
-    while len(guess) != 5:
-        guess = input("Try Again. Enter a 5 letter guess: ").upper()
-    for i in range (5):
-        if guess[i] == key[i]:
-            print(guess[i] + "|GREEN|")
-        elif guess[i] in key:
-            print(guess[i] + "|YELLOW|")
-        else:
-            print(guess[i] + "|GRAY|")
-    COUNT += 1
+    print(TRIES-COUNT, " Tries Left")
+    guess = input("Enter a 5 letter guess: ").lower() #turn guess lower-case
+    if (guess in words):
+        if guess == key:
+            print("You got it!")
+            break
+        while len(guess) != 5:
+            guess = input("Try Again. Enter a 5 letter guess: ").upper()
+        for i in range (5):
+            if guess[i] == key[i]:
+                print(guess[i] + "|GREEN|")
+            elif guess[i] in key:
+                print(guess[i] + "|YELLOW|")
+            else:
+                print(guess[i] + "|GRAY|")
+        COUNT += 1
+    else:
+       print("Invalid Word")
+       print("Try Again")
     
 if COUNT == TRIES:
     print("Ran out of tries")
