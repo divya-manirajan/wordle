@@ -5757,9 +5757,3 @@ words = [
     "biffy",
     "pupal"
   ]
-
-import random
-
-index = random.randint(0, len(words)-1)
-
-random_word = words[index]

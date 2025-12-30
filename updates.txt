@@ -1,11 +1,14 @@
 For Python:
+    Make output look nice
+
     add used letter tracking
+
+    include difficulty setting which certain words
     
     reformat code
         make separate functions and a main functio
         make it simpler to read
     
-    Make output look nice
     
     package up and add to github
 
