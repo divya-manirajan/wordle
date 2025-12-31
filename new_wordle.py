@@ -5,7 +5,7 @@
 import random #import random
 from word_selection import ALL_WORDS #import word bank
 
-#Set up used letter tracker
+#Set up used letter tracker dictionary
 used_letters = {}
 
 #Set up max limit of tries and guess counter
@@ -50,24 +50,27 @@ def play_round(MAX_TRIES, guess_counter):
     while guess_counter < 6:
         print("\n",MAX_TRIES - guess_counter, " Tries Left")
         guess = input("Enter a 5 letter guess: ").lower() #turn guess lower-case
-        for letter in guess:
-            if letter not in used_letters:
-                if letter in SOLUTION:
-                    used_letters[letter]='🟩 '
-                else:
-                    used_letters[letter]='⬛ '
-               
+          
         if guess in ALL_WORDS:
+            for letter in guess:
+                if letter in SOLUTION:
+                    used_letters[letter.upper()]='🟨 '
+                else:
+                    used_letters[letter.upper()]='⬛ '
+                 
             if guess == SOLUTION:
                 print("You got it!")
                 for i in range (5):
                     game_board[guess_counter][i] = ("["+guess[i].upper() + "🟩 ]")
+                    used_letters[guess[i].upper()]='🟩 '
                 display(game_board)
                 break
             
             for i in range (5):
                 if guess[i] == SOLUTION[i]:
                     game_board[guess_counter][i] = ("["+guess[i].upper() + "🟩 ]")
+                    used_letters[guess[i].upper()]='🟩 '
+
                 elif guess[i] in SOLUTION:
                     game_board[guess_counter][i] = ("["+guess[i].upper() + "🟨 ]")
                 else:
@@ -85,7 +88,7 @@ if __name__ == "__main__":
     try_again = 1
     while try_again:
         play_round(MAX_TRIES, guess_counter)
-        try_again_input = input("Try Again? Y/N: ")
+        try_again_input = input("\nTry Again? Y/N: ")
         try_again = 1 if try_again_input.lower() == "y" else 0
     print("Thanks For Playing!")
 
