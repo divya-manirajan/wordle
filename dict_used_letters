@@ -11,4 +11,5 @@ for letter in guess:
             used_letters[letter]='⬛ '
         
         
-print(used_letters)
+for i in sorted(used_letters):
+    print((i, used_letters[i]), end=" ")
