@@ -1,12 +1,12 @@
 For Python:
 
-    Make output look nice
+    Make output look nice - DONE
 
-    add used letter tracking
+    add used letter tracking - IN PROGRESS
 
     include difficulty setting with certain words
     
-    reformat code
+    reformat code - DONE
         make separate functions and a main function
         make it simpler to read
     
