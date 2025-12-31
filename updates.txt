@@ -2,7 +2,7 @@ For Python:
 
     Make output look nice - DONE
 
-    add used letter tracking - IN PROGRESS
+    add used letter tracking - DONE
 
     include difficulty setting with certain words
     
