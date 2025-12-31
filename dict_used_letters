@@ -1,0 +1,14 @@
+key = "hello"
+guess = input("Enter guess: ")
+
+used_letters = {}
+
+for letter in guess:
+    if letter not in used_letters:
+        if letter in key:
+            used_letters[letter]='🟩 '
+        else:
+            used_letters[letter]='⬛ '
+        
+        
+print(used_letters)
