@@ -6,7 +6,7 @@ import random #import random
 from word_selection import ALL_WORDS #import word bank
 
 #Set up used letter tracker
-used_letters = []
+used_letters = {}
 
 #Set up max limit of tries and guess counter
 MAX_TRIES = 6
@@ -21,7 +21,8 @@ game_board = [["[   ]" for col in range(GAME_BOARD_COLS)] for row in range(GAME_
 def display(board):
     for row in board:
         print(*row)
-    print("Used Letter: ", sorted(used_letters))
+    for i in sorted(used_letters):
+        print((i, used_letters[i]), end=" ")
 
         
 #Function to reset game board
@@ -29,7 +30,7 @@ def reset():
     global used_letters
     global game_board
     
-    used_letters = []
+    used_letters = {}
     for row in range(GAME_BOARD_ROWS):
         for col in range(GAME_BOARD_COLS):
             game_board[row][col] = "[   ]" 
@@ -47,11 +48,14 @@ def play_round(MAX_TRIES, guess_counter):
     SOLUTION = pick_solution(ALL_WORDS) #pick a random solution word
     display(game_board) #display initial game board
     while guess_counter < 6:
-        print(MAX_TRIES - guess_counter, " Tries Left")
+        print("\n",MAX_TRIES - guess_counter, " Tries Left")
         guess = input("Enter a 5 letter guess: ").lower() #turn guess lower-case
         for letter in guess:
-            if letter.upper() not in used_letters:
-                used_letters.append(letter.upper())
+            if letter not in used_letters:
+                if letter in SOLUTION:
+                    used_letters[letter]='🟩 '
+                else:
+                    used_letters[letter]='⬛ '
                
         if guess in ALL_WORDS:
             if guess == SOLUTION:
