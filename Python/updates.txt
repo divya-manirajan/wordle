@@ -2,6 +2,8 @@ For Python:
 
     include difficulty setting with certain words
 
+    if guess has repeated letters then separate check - IN PROGRESS
+
     add ReadMe to github 
  
 

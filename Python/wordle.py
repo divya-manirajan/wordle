@@ -46,36 +46,37 @@ def pick_solution(ALL_WORDS):
 #Function to handle round
 def play_round(MAX_TRIES, guess_counter):
     reset() #reset game board and used letter tracker 
-    SOLUTION = pick_solution(ALL_WORDS) #pick a random solution word
+    SOLUTION = pick_solution(ALL_WORDS).upper() #pick a random solution word
     display(game_board) #display initial game board
     while guess_counter < 6:
         print("\n",MAX_TRIES - guess_counter, " Tries Left")
-        guess = input("Enter a 5 letter guess: ").lower() #turn guess lower-case
+        guess = input("Enter a 5 letter guess: ").upper() #turn guess upper-case
           
-        if guess in ALL_WORDS:
+        if guess.lower() in ALL_WORDS:
             #Update used letter tracker
             for letter in guess:
                 if letter in SOLUTION:
-                    used_letters[letter.upper()]='🟨 '
+                    used_letters[letter]='🟨 '
                 else:
-                    used_letters[letter.upper()]='⬛ '
+                    used_letters[letter]='⬛ '
                  
             if guess == SOLUTION:
-                print("You got it!")
                 for i in range (5):
-                    game_board[guess_counter][i] = ("["+guess[i].upper() + "🟩 ]")
-                    used_letters[guess[i].upper()]='🟩 ' #Override used letter tracker
+                    game_board[guess_counter][i] = ("["+guess[i] + "🟩 ]")
+                    used_letters[guess[i]]='🟩 ' #Override used letter tracker
                 display(game_board)
+                print("You got it!")
+
                 break
             
             for i in range (5):
                 if guess[i] == SOLUTION[i]:
-                    game_board[guess_counter][i] = ("["+guess[i].upper() + "🟩 ]")
-                    used_letters[guess[i].upper()]='🟩 ' #Override used letter tracker
+                    game_board[guess_counter][i] = ("["+guess[i] + "🟩 ]")
+                    used_letters[guess[i]]='🟩 ' #Override used letter tracker
                 elif guess[i] in SOLUTION:
-                    game_board[guess_counter][i] = ("["+guess[i].upper() + "🟨 ]")
+                    game_board[guess_counter][i] = ("["+guess[i] + "🟨 ]")
                 else:
-                    game_board[guess_counter][i] = ("["+guess[i].upper() + "⬛ ]")
+                    game_board[guess_counter][i] = ("["+guess[i] + "⬛ ]")
             display(game_board)
             guess_counter += 1
         else:
@@ -90,7 +91,7 @@ if __name__ == "__main__":
     while try_again:
         play_round(MAX_TRIES, guess_counter)
         try_again_input = input("\nTry Again? Y/N: ")
-        try_again = 1 if try_again_input.lower() == "y" else 0
+        try_again = 1 if "Y" in try_again_input.upper() else 0
     print("Thanks For Playing!")
 
     
