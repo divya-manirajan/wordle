@@ -33,14 +33,21 @@ def handle_repeated_letters(guess):
 
     for i in range (5):
         if guess[i] in repeated_letters_in_guess:
-            print("REPEAT LETTER")
+            if guess[i] == key[i]:
+                game_board[guess_counter][i] = ("["+guess[i] + "🟩 ]")
+                used_letters[guess[i]]='🟩 ' #Override used letter tracker
+            elif guess[i] in key:
+                game_board[guess_counter][i] = ("["+guess[i] + "🟨 ]")  
+            else:
+                game_board[guess_counter][i] = ("["+guess[i] + "⬛ ]")
+            break
+
         else:
             if guess[i] == key[i]:
                 game_board[guess_counter][i] = ("["+guess[i] + "🟩 ]")
                 used_letters[guess[i]]='🟩 ' #Override used letter tracker
             elif guess[i] in key:
-                game_board[guess_counter][i] = ("["+guess[i] + "🟨 ]")
-                
+                game_board[guess_counter][i] = ("["+guess[i] + "🟨 ]")  
             else:
                 game_board[guess_counter][i] = ("["+guess[i] + "⬛ ]")
 
