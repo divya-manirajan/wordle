@@ -38,9 +38,15 @@ def pick_solution(ALL_WORDS):
     SOLUTION = ALL_WORDS[random_index]
     return SOLUTION   
 
+def has_repeated_letters(guess):
+    result = False
+    for letter in guess:
+        if(guess.count(letter) > 1):
+           result = True 
+    return(result)
+
 def handle_repeated_letters(guess, key, guess_counter):
     solution_as_list = list (key)
-
     for i in range(5): #check for green and black first and remove the letter from the solution if green
         if guess[i] == solution_as_list[i]:
             game_board[guess_counter][i] = ("["+guess[i] + "🟩 ]")
@@ -57,12 +63,19 @@ def handle_repeated_letters(guess, key, guess_counter):
             idx = solution_as_list.index(guess[i])
             solution_as_list[idx] = ""
 
-def is_repeated_letters(guess):
-    result = False
-    for letter in guess:
-        if(guess.count(letter) > 1):
-           result = True 
-    return(result)
+def handle_no_repeated_letters(guess, key, guess_counter):
+    for i in range (5):
+        if guess[i] == key[i]:
+            game_board[guess_counter][i] = ("["+guess[i] + "🟩 ]")
+            used_letters[guess[i]]='🟩 ' #Override used letter tracker
+        elif guess[i] in key:
+            game_board[guess_counter][i] = ("["+guess[i] + "🟨 ]")
+            if guess[i] not in used_letters:
+                used_letters[guess[i]] = "🟨 "
+        else:
+            game_board[guess_counter][i] = ("["+guess[i] + "⬛ ]")
+            if guess[i] not in used_letters:
+                used_letters[guess[i]] = "⬛ "
 
         
 #Function to handle round
@@ -84,22 +97,12 @@ def play_round(MAX_TRIES, guess_counter):
                 print("\n----------------------------")
                 break
 
-            if(is_repeated_letters(guess) == True):
+            if(has_repeated_letters(guess) == True):
                 handle_repeated_letters(guess, SOLUTION, guess_counter)
             
             else:
-                for i in range (5):
-                    if guess[i] == SOLUTION[i]:
-                        game_board[guess_counter][i] = ("["+guess[i] + "🟩 ]")
-                        used_letters[guess[i]]='🟩 ' #Override used letter tracker
-                    elif guess[i] in SOLUTION:
-                        game_board[guess_counter][i] = ("["+guess[i] + "🟨 ]")
-                        if guess[i] not in used_letters:
-                            used_letters[guess[i]] = "🟨 "
-                    else:
-                        game_board[guess_counter][i] = ("["+guess[i] + "⬛ ]")
-                        if guess[i] not in used_letters:
-                            used_letters[guess[i]] = "⬛ "
+                handle_no_repeated_letters(guess, SOLUTION, guess_counter)
+                
             display(game_board)
             guess_counter += 1
         else:
