@@ -58,8 +58,10 @@ def play_round(MAX_TRIES, guess_counter):
                 for i in range (5):
                     game_board[guess_counter][i] = ("["+guess[i] + "🟩 ]")
                     used_letters[guess[i]]='🟩 ' #Override used letter tracker
-                print("Congrats! You got it!")
+                print("Congrats!")
                 display(game_board)
+                print("You Got it!!")
+
                 print("\n----------------------------")
                 break
             

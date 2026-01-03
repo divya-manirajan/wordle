@@ -48,8 +48,7 @@ def pick_solution(ALL_WORDS):
 def play_round(MAX_TRIES, guess_counter):
     reset() #reset game board and used letter tracker 
     SOLUTION = pick_solution(ALL_WORDS).upper() #pick a random solution word
-    SOLUTION = "STEAK"
-
+   
     display(game_board) #display initial game board
     while guess_counter < 6:
         print("\n",MAX_TRIES - guess_counter, " Tries Left")
@@ -59,8 +58,10 @@ def play_round(MAX_TRIES, guess_counter):
                 for i in range (5):
                     game_board[guess_counter][i] = ("["+guess[i] + "🟩 ]")
                     used_letters[guess[i]]='🟩 ' #Override used letter tracker
-                print("Congrats! You got it!")
+                print("Congrats!")
                 display(game_board)
+                print("You Got it!!")
+
                 print("\n----------------------------")
                 break
             
