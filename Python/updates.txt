@@ -4,6 +4,8 @@ For Python:
 
     if guess has repeated letters then separate check - IN PROGRESS
 
-    add ReadMe to github 
+    implement unit testing with pytest 
+
+		add ReadMe to github 
  
 
