@@ -73,7 +73,6 @@ def handle_guess(guess, key, game_board, guess_counter, used_letters):
 def play_round():
     used_letters, MAX_TRIES, guess_counter, game_board = setup()
     SOLUTION = pick_solution(ALL_WORDS).upper() #pick a random solution word
-    print(SOLUTION)
     display(game_board, used_letters) #display initial game board
     while guess_counter < MAX_TRIES:
         print("\n",MAX_TRIES - guess_counter, " Tries Left")
@@ -105,3 +104,7 @@ if __name__ == "__main__":
         try_again_input = input("\nTry Again? Y/N: ")
         try_again = 1 if "Y" in try_again_input.upper() else 0
     print("Thanks For Playing!")
+
+
+def test():
+    print("TEST IMPORT")
