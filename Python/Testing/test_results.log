@@ -1,0 +1,59 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.11.5, pytest-7.4.0, pluggy-1.0.0 -- /Users/divyamanirajan/anaconda3/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/divyamanirajan/GitHubRepos/Wordle/Python/Testing
+plugins: cov-5.0.0, anyio-3.5.0
+collecting ... collected 4 items
+
+all_tests.py::test_ok PASSED                                             [ 25%]
+all_tests.py::test_words_fail FAILED                                     [ 50%]
+all_tests.py::test_numbers_fail FAILED                                   [ 75%]
+all_tests.py::test_long_text_fail FAILED                                 [100%]
+
+=================================== FAILURES ===================================
+_______________________________ test_words_fail ________________________________
+
+    def test_words_fail():
+        fruits1 = ["banana", "apple", "grapes", "melon", "kiwi"]
+        fruits2 = ["banana", "apple", "orange", "melon", "kiwi"]
+>       assert fruits1 == fruits2
+E       AssertionError: assert ['banana', 'a...elon', 'kiwi'] == ['banana', 'a...elon', 'kiwi']
+E         At index 2 diff: 'grapes' != 'orange'
+E         Full diff:
+E         - ['banana', 'apple', 'orange', 'melon', 'kiwi']
+E         ?                      ^  ^^
+E         + ['banana', 'apple', 'grapes', 'melon', 'kiwi']
+E         ?                      ^  ^ +
+
+all_tests.py:9: AssertionError
+______________________________ test_numbers_fail _______________________________
+
+    def test_numbers_fail():
+        number_to_text1 = {str(x): x for x in range(5)}
+        number_to_text2 = {str(x * 10): x * 10 for x in range(5)}
+>       assert number_to_text1 == number_to_text2
+E       AssertionError: assert {'0': 0, '1':..., '3': 3, ...} == {'0': 0, '10'...'30': 30, ...}
+E         Omitting 1 identical items, use -vv to show
+E         Left contains 4 more items:
+E         {'1': 1, '2': 2, '3': 3, '4': 4}
+E         Right contains 4 more items:
+E         {'10': 10, '20': 20, '30': 30, '40': 40}
+E         Full diff:
+E         - {'0': 0, '10': 10, '20': 20, '30': 30, '40': 40}
+E         ?            -    -    -    -    -    -    -    -
+E         + {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4}
+
+all_tests.py:15: AssertionError
+_____________________________ test_long_text_fail ______________________________
+
+    def test_long_text_fail():
+        long_text = "Lorem ipsum dolor sit amet " * 10
+>       assert "hello world" in long_text
+E       AssertionError: assert 'hello world' in 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet '
+
+all_tests.py:20: AssertionError
+=========================== short test summary info ============================
+FAILED all_tests.py::test_words_fail - AssertionError: assert ['banana', 'a.....
+FAILED all_tests.py::test_numbers_fail - AssertionError: assert {'0': 0, '1':...
+FAILED all_tests.py::test_long_text_fail - AssertionError: assert 'hello worl...
+========================= 3 failed, 1 passed in 0.12s ==========================
